@@ -1,11 +1,10 @@
-var remail = "smsmspy@gmail.com"
-var rpass = "na19971998*"
 function check() {
     var email = document.getElementById("email").value
     var password = document.getElementById("password").value
+    var user = Checkiemail(email)
 
-    if (email == remail) {
-        if (password == rpass) {
+    if (email == user.email) {
+        if (password == user.password) {
             alert("welcome")
         }
         else {
@@ -14,5 +13,15 @@ function check() {
     }
     else {
         alert("wrong password or email")
+    }
+}
+
+function Checkiemail(e) {
+    var users = JSON.parse(localStorage.getItem("users"))
+    for (i = 0; i < users.length; i++) {
+        var user = users[i]
+        if (user.email == e) {
+            return user
+        }
     }
 }
